@@ -8,22 +8,17 @@
   <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}" />
 
 </head>
+<center>
 <body>
     <img height="250px" src="https://happynewyear2018.wiki/wp-content/uploads/2017/08/Happy-New-Year-2018.jpg" width="800px" class="uk-align-center">
 
-		<h1>Add your New Years Resolution!</h1>
-	
+		<h1>Add New Years Resolution!</h1>
         <form action="/" method="post">
-       
           <input class="uk-input uk-form-width-large uk-form-large" name="title" type="text">
-    
-          <input class="uk-button uk-button-default uk-button-large" type="submit" value="Add">
-          
+          <input class="uk-button uk-button-primary uk-button-large" type="submit" value="Add">          
 				</form>
-  
 
     <h1>Resolutions</h1>
-   
   
 		<table class="uk-table uk-table-striped">
       <thead>
@@ -42,10 +37,8 @@
 				</td>
 				<td>
               <form action="./update" method="post" style="display: inline">
-                
                 <input class="uk-input uk-form-width-large uk-form-large" name="oldtitle" type="hidden" value="{{resolution.title}}">
-               
-              
+      
                 <input class="uk-input uk-form-width-large uk-form-large" name="newtitle" type="text" value="{{resolution.title}}"> 
               </td>
               <td>
@@ -67,4 +60,5 @@
   <script "{{ url_for('static',filename='styles/js/uikit.min.js') }}" /></script>
   <script "{{ url_for('static',filename='styles/js/uikit-icons.min.js') }}" /></script>
 </body>
+</center>
 </html>
