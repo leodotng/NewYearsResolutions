@@ -1,48 +1,70 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Happy New Year! New Years resolutions!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  </head>
-<body>
-  <center>
-  <img src="https://happynewyear2018.wiki/wp-content/uploads/2017/08/Happy-New-Year-2018.jpg" height="50px" width="500px">
-  <h1>Add your New Years Resolution!</h1>
+<head>
+	<title>Happy New Year! New Years resolutions!</title>
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static',filename='styles/css/uikit.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static',filename='styles/style.css') }}" />
 
-  <div class="field">
-      <div class="control">
-  <form method="POST" action="/">
-    <input type="text" name="title" class="input is-primary">
-    <input type="submit" value="Add" class="button is-primary is-outlined">
-  </form>
-  </div>
-</div>
-  <h1>Resolutions</h1>
-  <table>
-      {% for resolution in resolutions %}
-      <tr>
-        <td>
-      <p>{{resolution.title}}</p>
+</head>
+<body>
+    <img height="250px" src="https://happynewyear2018.wiki/wp-content/uploads/2017/08/Happy-New-Year-2018.jpg" width="800px" class="uk-align-center">
+
+		<h1>Add your New Years Resolution!</h1>
+	
+        <form action="/" method="post">
+       
+          <input class="uk-input uk-form-width-large uk-form-large" name="title" type="text">
+    
+          <input class="uk-button uk-button-default uk-button-large" type="submit" value="Add">
+          
+				</form>
+  
+
+    <h1>Resolutions</h1>
+   
+  
+		<table class="uk-table uk-table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Update</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        {% for resolution in resolutions %}
+			<tr>
+				<td>
+					<h2>{{resolution.title}}</h2>
+				</td>
+				<td>
+              <form action="./update" method="post" style="display: inline">
+                
+                <input class="uk-input uk-form-width-large uk-form-large" name="oldtitle" type="hidden" value="{{resolution.title}}">
+               
+              
+                <input class="uk-input uk-form-width-large uk-form-large" name="newtitle" type="text" value="{{resolution.title}}"> 
+              </td>
+              <td>
+                <input class="uk-button uk-button-primary uk-button-large" type="submit" value="Update">
+                
+							</form>
         </td>
-        <td>
-            <div class="field">
-                <div class="control">
-      <form method="POST" action="./update" style="display: inline">
-        <input type="hidden" value="{{resolution.title}}" name="oldtitle" class="input is-primary">
-        <input type="text" value="{{resolution.title}}" name="newtitle" class="input is-primary">
-        <input type="submit" value="Update" class="button is-primary is-outlined">
-      </form>
-      </td>
-      <td>
-      <form method="POST" action="./delete" style="display: inline">
-      <input type="hidden" value="{{resolution.title}}" name="title" class="input is-primary">
-      <input type="submit" value="Delete" class="button is-primary is-outlined">
-      </form>
-      </td>
-    </tr>
-    {% endfor %}
-</table>
-    </center>
-  </body>
+				<td>
+					<form action="./delete" method="post" style="display: inline">
+            <input class="uk-input uk-form-width-large uk-form-large" name="title" type="hidden" value="{{resolution.title}}"> 
+            <input class="uk-button uk-button-danger uk-button-large" type="submit" value="Delete">
+					</form>
+				</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+
+  <script "{{ url_for('static',filename='styles/js/uikit.min.js') }}" /></script>
+  <script "{{ url_for('static',filename='styles/js/uikit-icons.min.js') }}" /></script>
+</body>
 </html>
